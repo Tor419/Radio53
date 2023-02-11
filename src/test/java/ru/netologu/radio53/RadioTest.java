@@ -90,9 +90,9 @@ public class RadioTest {
 
     @Test
     void shouldDecreaseVolumeTest() {
-        radio.setCurrentVolume(6);
+        radio.setCurrentVolume(4);
         radio.decreaseVolume();
-        assertEquals(5, radio.getCurrentVolume());
+        assertEquals(3, radio.getCurrentVolume());
     }
 
     @Test
