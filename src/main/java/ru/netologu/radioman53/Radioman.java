@@ -1,14 +1,21 @@
-package ru.netologu.radio53;
+package ru.netologu.radioman53;
 
-public class Radio {
-
+public class Radioman {
     private int currentStation;
     private int minStation = 0;
-    private int maxStation = 9;
+    private int maxStation;
     private int currentVolume;
     private int minVolume = 0;
-    private int maxVolume = 10;
+    private int maxVolume = 100;
 
+
+    public Radioman(int stationsCont) {
+        this.maxStation = stationsCont - 1;
+    }
+
+    public Radioman() {
+        this.maxStation = 9;
+    }
 
     public int getCurrentStation() {
         return currentStation;
