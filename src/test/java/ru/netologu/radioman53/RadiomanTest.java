@@ -10,8 +10,12 @@ public class RadiomanTest {
     Radioman radioman = new Radioman();
 
     @Test
-    void shouldChangeStationTest() {
+    void shouldChangeZeroStationTest() {
         assertEquals(0, radioman.getCurrentStation());
+    }
+
+    @Test
+    void shouldChangeStationTest() {
         radioman.setCurrentStation(5);
 
         int expected = 5;
@@ -62,8 +66,12 @@ public class RadiomanTest {
 
 
     @Test
-    void shouldChangeVolumeTest() {
+    void shouldChangeZeroVolumeTest() {
         assertEquals(0, radioman.getCurrentVolume());
+    }
+
+    @Test
+    void shouldChangeVolumeTest() {
         radioman.setCurrentVolume(5);
         assertEquals(5, radioman.getCurrentVolume());
     }
@@ -111,10 +119,72 @@ public class RadiomanTest {
     }
 
     @Test
-    public void shouldSetRadioStation() {
-        Radioman radio = new Radioman(20);
+    public void shouldSetRadioStationTest() {
+        Radioman radioman = new Radioman(20);
         radioman.setCurrentStation(14);
-        int actual = radio.getCurrentStation();
-        Assertions.assertEquals(14, actual);
+        assertEquals(14, radioman.getCurrentStation());
+    }
+
+    @Test
+    public void shouldSetOverFalseRadioStationTest() {
+        Radioman radioman = new Radioman(20);
+        radioman.setCurrentStation(20);
+        assertEquals(0, radioman.getCurrentStation());
+    }
+
+    @Test
+    public void shouldSetUnderFalseRadioStationTest() {
+        Radioman radioman = new Radioman(20);
+        radioman.setCurrentStation(-1);
+        assertEquals(0, radioman.getCurrentStation());
+    }
+
+    @Test
+    public void shouldSetNextRadioStationTest() {
+        Radioman radioman = new Radioman(20);
+        radioman.setCurrentStation(14);
+        radioman.nextStation();
+        assertEquals(15, radioman.getCurrentStation());
+    }
+
+    @Test
+    public void shouldSetPrevRadioStationTest() {
+        Radioman radioman = new Radioman(20);
+        radioman.setCurrentStation(14);
+        radioman.previousStation();
+        assertEquals(13, radioman.getCurrentStation());
+    }
+
+    @Test
+    public void shouldSetNextOverRadioStationTest() {
+        Radioman radioman = new Radioman(20);
+        radioman.setCurrentStation(19);
+        radioman.nextStation();
+        assertEquals(0, radioman.getCurrentStation());
+    }
+
+    @Test
+    public void shouldBelowMinRadioStationTest() {
+        Radioman radioman = new Radioman(20);
+        radioman.setCurrentStation(0);
+        radioman.previousStation();
+        assertEquals(19, radioman.getCurrentStation());
+    }
+
+    @Test
+    public void stationsContLessSetPrevTest() {
+        Radioman radioman = new Radioman(50);
+        radioman.setCurrentStation(144);
+        radioman.previousStation();
+        assertEquals(49, radioman.getCurrentStation());
+    }
+
+    @Test
+    public void stationsContLessSetNextTest() {
+        Radioman radioman = new Radioman(50);
+        radioman.setCurrentStation(144);
+        radioman.nextStation();
+        assertEquals(1, radioman.getCurrentStation());
     }
 }
+
